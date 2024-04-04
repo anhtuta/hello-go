@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 
-	"example.com/greetings"
+	"hello-go/greetings"
+
 	"rsc.io/quote"
 )
 
