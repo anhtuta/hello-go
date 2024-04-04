@@ -12,4 +12,10 @@ require (
 	rsc.io/sampler v1.3.0 // indirect
 )
 
+// For production use, you’d publish the hello-go/greetings module from its repository, where Go
+// tools could find it to download it. For now, because you haven't published the module yet,
+// you need to adapt the hello-go/hello module so it can find the hello-go/greetings code on
+// your local file system. To do that, use the go mod edit command:
+// go mod edit -replace hello-go/greetings=../greetings
+// Then it will generate this line for you:
 replace hello-go/greetings => ../greetings
