@@ -1,8 +1,10 @@
-Create a module via `init` command. This command creates a go.mod file in which dependencies you add will be listed for tracking:
+Create a module via `init` command. This command creates a go.mod file in which dependencies you add will be listed for tracking (lệnh này ban đầu dùng để khởi tạo module web-service-gin, cái tên neuvillette để cho hay chứ chả có ý nghĩa gì, có thể dùng tên khác tuỳ ý):
 
 ```bash
 go mod init neuvillette/web-service-gin
 ```
+
+Start this module (web server): `go run .`
 
 Get albums, and get by ID:
 
