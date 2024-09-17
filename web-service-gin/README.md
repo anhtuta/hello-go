@@ -1,8 +1,16 @@
-Create a module via `init` command. This command creates a go.mod file in which dependencies you add will be listed for tracking (lệnh này ban đầu dùng để khởi tạo module web-service-gin, cái tên neuvillette để cho hay chứ chả có ý nghĩa gì, có thể dùng tên khác tuỳ ý):
+## Cách tạo 1 module step by step
+
+Đầu tiên phải tạo thư mục `web-service-gin`, sau đó cd vào đó
+
+Tiếp theo, khởi tạo module web-service-gin bằng lệnh `init` (cái tên neuvillette để cho hay chứ chả có ý nghĩa gì, có thể dùng tên khác tuỳ ý):
 
 ```bash
 go mod init neuvillette/web-service-gin
 ```
+
+Sau đó tạo file `main.go` và bắt đầu code thôi
+
+## Start this module
 
 Start this module (web server): `go run .`
 

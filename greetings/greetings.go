@@ -17,6 +17,7 @@ func Hello(name string) (string, error) {
 	// you might have written this as:
 	// var message string
 	// message = fmt.Sprintf("Hi, %v. Welcome!", name)
+	// or: var message = fmt.Sprintf(randomFormat(), name)
 	message := fmt.Sprintf(randomFormat(), name)
 	return message, nil
 }
