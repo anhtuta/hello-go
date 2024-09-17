@@ -10,3 +10,10 @@ Ref: https://go.dev/tour/list
 ➜  basic git:(main) ✗ go mod init tour/basic
 ➜  basic git:(main) ✗ touch main.go
 ```
+
+## Flow control tour
+
+```sh
+➜  flowcontrol git:(main) go mod init tour/flowcontrol
+➜  flowcontrol git:(main) ✗ touch main.go
+```
