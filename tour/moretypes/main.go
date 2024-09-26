@@ -22,9 +22,9 @@ func main() {
 	*p = 21         // set i through the pointer: *p = 21 tương đương với i = 21
 	fmt.Println(i)  // see the new value of i
 
-	p = &j         // point to j
-	*p = *p / 37   // divide j through the pointer
-	fmt.Println(j) // see the new value of j
+	p = &j                                     // point to j
+	*p = *p / 37                               // divide j through the pointer
+	fmt.Println("j after modifying via p:", j) // see the new value of j: 2701 / 37 = 73
 
 	fmt.Println(Vertex{1, 2})
 
