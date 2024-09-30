@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Interfaces
 // An interface type is defined as a set of method signatures.
@@ -62,6 +64,29 @@ func describe(i interface{}) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }
 
+// Ref: Copilot
+// Mọi param của hàm MyPrint1 phải cùng kiểu dữ liệu, không thể truyền vào các kiểu dữ liệu khác nhau.
+func MyPrint1[T any](s ...T) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+
+// Mọi param của hàm MyPrint2 có thể là các kiểu dữ liệu khác nhau.
+func MyPrint2(s ...any) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+
+// Param đầu tiên có kiểu bất kỳ, các param sau là các kiểu bất kỳ khác, nhưng phải cùng kiểu dữ liệu.
+func MyPrint3[T any, U any](s T, u ...U) {
+	fmt.Println(s, ":")
+	for _, v := range u {
+		fmt.Println(v)
+	}
+}
+
 func InterfaceDemo() {
 	fmt.Println("\n========== InterfaceDemo ==========")
 	rect := Rectangle{Width: 3, Height: 4}
@@ -87,7 +112,6 @@ func InterfaceDemo() {
 	// interface{}
 	// An empty interface may hold values of any type. (Every type implements at least zero methods.)
 	// Empty interfaces are used by code that handles values of unknown type. For example, fmt.Print takes any number of arguments of type interface{}
-
 	fmt.Println("\n========== Empty interface ==========")
 	var i interface{}
 	describe(i)
@@ -97,4 +121,18 @@ func InterfaceDemo() {
 
 	i = "hello"
 	describe(i)
+
+	var j any // any is a type alias for interface{}, it's a built-in type in Go.
+	j = 42
+	describe(j)
+
+	j = "hello"
+	describe(j)
+
+	MyPrint1(1, 2, 3)
+	// MyPrint1(1, "ha ha", true) // Error!
+
+	MyPrint2(1, "ha ha", true)
+
+	MyPrint3("Square numbers", 1, 4, 9, 16, 25)
 }
