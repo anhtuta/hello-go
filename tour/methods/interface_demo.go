@@ -66,6 +66,7 @@ func describe(i interface{}) {
 
 // Ref: Copilot
 // Mọi param của hàm MyPrint1 phải cùng kiểu dữ liệu, không thể truyền vào các kiểu dữ liệu khác nhau.
+// Update: phần này nên ở bên Generics
 func MyPrint1[T any](s ...T) {
 	for _, v := range s {
 		fmt.Println(v)

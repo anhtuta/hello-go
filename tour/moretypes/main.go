@@ -130,5 +130,18 @@ func main() {
 	s = s[1:]
 	fmt.Println(s) // [5]
 
+	//////// So sánh slice với array (Copilot)
+	fmt.Println("\n========== So sánh slice với array ==========")
+	// The primary difference between creating an array and a slice in Go is that with a slice,
+	// you do not need to specify the size. Here are the key points:
+	// Array: Fixed Size: The size of the array is specified at the time of creation and cannot be changed.
+	arr := [5]int{1, 2, 3, 4, 5}
+	fmt.Println("Array:", arr)
+	// Slice: Dynamic Size: The size of the slice can grow and shrink dynamically.
+	slice := []int{1, 2, 3, 4, 5}
+	fmt.Println("Slice:", slice)
+	slice = append(slice, 6, 7, 8)
+	fmt.Println("Slice after append:", slice)
+
 	// Not done yet, continue at https://go.dev/tour/moretypes/11
 }
