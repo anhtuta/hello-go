@@ -144,4 +144,6 @@ func main() {
 	fmt.Println("Slice after append:", slice)
 
 	// Not done yet, continue at https://go.dev/tour/moretypes/11
+
+	forRange()
 }
