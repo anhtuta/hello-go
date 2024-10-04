@@ -10,8 +10,9 @@ type Vertex struct {
 func main() {
 	pointerAndStruct()
 	arrayAndSlice()
-
-	// Not done yet, continue at https://go.dev/tour/moretypes/11
-
+	sliceLenCapDemo1()
+	sliceLenCapDemo2()
 	forRange()
+	mapDemo()
+	functionsAreValues()
 }

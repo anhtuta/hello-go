@@ -9,7 +9,7 @@ type Student struct {
 }
 
 func (s Student) String() string {
-	return fmt.Sprintf("Id: %d, Name: %s, Address: %s", s.Id, s.Name, s.Address)
+	return fmt.Sprintf("{Id: %d, Name: %s, Address: %s}", s.Id, s.Name, s.Address)
 }
 
 func forRange() {
@@ -38,7 +38,7 @@ func forRange() {
 		// modifying the copy of the struct, not the original struct in the slice.
 		s.Address = "New Address"
 	}
-	fmt.Println("students1:", students1)
+	fmt.Println("students1:", students1) // [{Id: 1, Name: Alice, Address: 123 Main St} {Id: 2, Name: Bob, Address: 456 Elm St} {Id: 3, Name: Charlie, Address: 789 Oak St}]
 
 	// Nhưng nếu for range với 1 mảng các phần tử có kiểu CON TRỎ của 1 struct, thì kết quả sẽ KHÁC.
 	// However, if students is a slice of pointers to structs, s will be a copy of the pointer, and modifying s.Address
@@ -51,5 +51,5 @@ func forRange() {
 		// modifying the original struct in the slice
 		s.Address = "New Address"
 	}
-	fmt.Println("students2:", students2)
+	fmt.Println("students2:", students2) // [{Id: 1, Name: Alice, Address: New Address} {Id: 2, Name: Bob, Address: New Address} {Id: 3, Name: Charlie, Address: New Address}]
 }
