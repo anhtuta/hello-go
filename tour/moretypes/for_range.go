@@ -13,7 +13,6 @@ func (s Student) String() string {
 }
 
 func forRange() {
-
 	fmt.Println("\n========== For range demo (Copilot) ==========")
 	// When using for range, the second value in the loop is a copy of the element, not a reference to the original element.
 	// This means that modifying the second value inside the loop does not affect the original element in the array or slice
