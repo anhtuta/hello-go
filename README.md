@@ -66,8 +66,13 @@ p = &a
 // Vừa khai báo con trỏ p kiểu int và trỏ tới a
 p := &a
 
-// Cứ thao tác trên p là sẽ thay đổi vị trí mà nó sẽ trỏ tới,
-// còn thao tác trên *p là thay đổi giá trị của biến nó trỏ tới (không thay đổi vị trí)
+// Đọc p tức là đọc vị trí ô nhớ nó trỏ tới
+// Đọc *p là đọc giá trị mà nó trỏ tới
+fmt.Println("p = ", p)   // p lưu trữ địa chỉ của a
+fmt.Println("*p = ", *p) // *p lấy giá trị của biến mà p trỏ tới
+
+// Thao tác trên p là sẽ thay đổi vị trí mà nó sẽ trỏ tới,
+// Thao tác trên *p là thay đổi giá trị của biến nó trỏ tới (không thay đổi vị trí)
 p = &b // giờ trỏ sang b
 
 // KHÔNG thể gán cho p giá trị 1 số int, mà chỉ có thể gán cho p địa chỉ của biến khác
@@ -214,5 +219,7 @@ Nên return pointer khi dùng Go, vì
 - Mutability: allow the caller to modify the struct's fields.
 - Nil Checks: allow the caller to check for nil, which can be useful for error handling and initialization checks.
 - Consistency: Many Go libraries and idiomatic patterns use pointers for struct types, making it easier to integrate with other code.
+
+Java's implicit references: **all objects are reference types**, so we don't need explicit pointers (mặc định mọi kiểu object trong java là kiểu tham chiếu, nên khỏi phải dùng pointer cho nó mệt!)
 
 Ref: Copilot

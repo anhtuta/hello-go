@@ -22,6 +22,11 @@ func main() {
 	*p = 21         // set i through the pointer: *p = 21 tương đương với i = 21
 	fmt.Println(i)  // see the new value of i
 
+	p0 := 0x14000110018      // hex
+	fmt.Println("p0 = ", p0) // p0 và p đều là 1 con số, nhưng p0 là số bình thường, còn p là địa chỉ ô nhớ
+	fmt.Println("p = ", p)   // p lưu trữ địa chỉ của i: 0x14000110018
+	fmt.Println("*p = ", *p) // *p lấy giá trị của biến mà p trỏ tới: 21
+
 	p = &j                                     // point to j
 	*p = *p / 37                               // divide j through the pointer
 	fmt.Println("j after modifying via p:", j) // see the new value of j: 2701 / 37 = 73

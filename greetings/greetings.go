@@ -13,6 +13,11 @@ func Hello(name string) (string, error) {
 		return "", errors.New("empty name")
 	}
 
+	if name == "aaa" {
+		fmt.Println("Error: aaa is not allowed")
+		return "", errors.New("aaa is not allowed")
+	}
+
 	// Return a greeting that embeds the name in a message.
 	// you might have written this as:
 	// var message string
