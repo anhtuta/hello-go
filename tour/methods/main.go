@@ -137,4 +137,10 @@ func main() {
 	TypeAssertions()
 
 	StringersDemo()
+
+	errors()
+
+	readers()
+
+	images()
 }

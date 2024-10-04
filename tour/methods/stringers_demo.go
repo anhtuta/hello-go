@@ -26,6 +26,7 @@ func (p Person) String() string {
 type IPAddr [4]byte
 
 // Exercise: Stringers
+// Nói theo ngôn ngữ Java thì kiểu IPAddr implement interface Stringer.
 func (ip IPAddr) String() string {
 	return fmt.Sprintf("%d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3])
 }
