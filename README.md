@@ -2,6 +2,8 @@
 
 Ref: https://go.dev/doc/
 
+This tutorial uses version: go1.22.1 darwin/arm64
+
 # `go.mod` vs `pom.xml` file
 
 The `go.mod` file in Go is somewhat similar to the `pom.xml` file in Java. Both are used for managing project dependencies
@@ -221,5 +223,56 @@ Nên return pointer khi dùng Go, vì
 - Consistency: Many Go libraries and idiomatic patterns use pointers for struct types, making it easier to integrate with other code.
 
 Java's implicit references: **all objects are reference types**, so we don't need explicit pointers (mặc định mọi kiểu object trong java là kiểu tham chiếu, nên khỏi phải dùng pointer cho nó mệt!)
+
+Ref: Copilot
+
+# Goroutines vs Thread in Java
+
+Goroutines in Go are similar to threads in Java in that they both allow for concurrent execution of code. However, there are some key differences between them:
+
+Similarities
+
+- Concurrent Execution: Both goroutines and Java threads enable concurrent execution of code, allowing multiple tasks to run simultaneously.
+- Lightweight: Both are designed to be lightweight and efficient in terms of resource usage. (nhưng goroutines lightweight hơn)
+
+Differences
+
+- Creation and Management:
+  - Goroutines: Managed by the Go runtime, which **handles scheduling and execution**. They are **extremely lightweight**, with a **small initial stack size** that **grows and shrinks as needed**.
+  - Java Threads: Managed by the Java Virtual Machine (JVM) and the underlying operating system. They have a **fixed stack size** and are generally **more resource-intensive** than goroutines.
+- Syntax:
+
+  - Goroutines: Created using the `go` keyword
+    ```go
+    go say("world")
+    ```
+  - Java Threads: Created by extending the `Thread` class or implementing the `Runnable` interface.
+    ```java
+    Thread t = new Thread(new Runnable() {
+        public void run() {
+            say("world");
+        }
+    });
+    t.start();
+    ```
+
+- Communication:
+
+  - Goroutines: Communicate using **channels**, which provide a way to **send and receive values between goroutines**.
+    ```go
+    ch := make(chan int)
+    ch <- 1 // Send value to channel
+    val := <-ch // Receive value from channel
+    ```
+  - Java Threads: Communicate using **shared variables, synchronized blocks**, and other concurrency utilities provided by the java.util.concurrent package.
+    ```java
+    synchronized(sharedObject) {
+        // Access shared object
+    }
+    ```
+
+- Blocking Behavior:
+  - Goroutines: By default, sends and receives on channels block until the other side is ready. This allows for synchronization without explicit locks.
+  - Java Threads: Blocking behavior is managed using synchronization primitives like `wait()`, `notify()`, and `notifyAll()`, or higher-level constructs like `CountDownLatch` and `Semaphore`.
 
 Ref: Copilot
