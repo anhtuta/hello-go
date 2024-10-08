@@ -276,3 +276,14 @@ Differences
   - Java Threads: Blocking behavior is managed using synchronization primitives like `wait()`, `notify()`, and `notifyAll()`, or higher-level constructs like `CountDownLatch` and `Semaphore`.
 
 Ref: Copilot
+
+# Steps to work with Testify Mock
+
+1. Create an interface that defines the behavior of the nondeterministic code
+2. Create a struct that implements the interface
+3. Use the struct in the code you want to test
+4. Create a mock of the interface in the test
+5. Set the expected behavior of the mock
+6. Use the mock in the test
+
+Ref: Copilot

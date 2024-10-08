@@ -156,6 +156,6 @@ func TestMapWithTestify(t *testing.T) {
 // and Testify and its “better” assertion function and mock capability offer optional additional functionality.
 
 // The testing package offers three testing modes: regular tests (testing.T), benchmark tests (testing.B),
-// and fuzz tests (testing.F). Setting any type of test is very simple. The testing package also offers many
-// helper functions that will help you write better and cleaner tests. Spend some time exploring the library
-// before jumping into testing.
+// and fuzz tests (testing.F). Setting any type of test is very simple.
+// The testing package also offers many helper functions that will help you write better and cleaner tests.
+// Spend some time exploring the library before jumping into testing.
