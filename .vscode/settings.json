@@ -1,7 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": [
-    "Fooer",
-    "Goroutines"
-  ]
+  "cSpell.words": ["Fooer", "Goroutines", "httptest"]
 }
