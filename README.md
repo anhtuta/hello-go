@@ -95,6 +95,17 @@ p.X = 5
 
 Detail code: [More types](./tour/moretypes/main.go)
 
+Dereference pointer: giả sử function có 1 param kiểu con trỏ, thì khi gọi field/method của biến đó, ta phải dereference con trỏ đó
+
+```go
+func getSlothsFavoriteSnack(c *ZooClient) (string, error) {
+    // Dereference pointer
+    res, err := (*c).ListAnimalFacts(...)
+}
+```
+
+Detail code: [getSlothsFavoriteSnack](./test-dev-to/mock_web_demo/zoo_service.go)
+
 # Composition
 
 In Go, when you write `type A B`

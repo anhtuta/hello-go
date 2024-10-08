@@ -29,3 +29,4 @@ go test -v -test.short
 2. Subtesting, skipping, and cleanup in the Go testing.T: [sloths.go](./sloths/sloths.go), [gopher.go](./sloths/gopher.go)
 3. Mocks in Go tests with Testify Mock: [rand.go](./mock_demo/rand.go)
 4. Test your Go web apps with httptest: [server.go](./httptest_demo/server.go)
+5. Using Testify Mock in web clients: [zoo_service.go](./mock_web_demo/zoo_service.go)
