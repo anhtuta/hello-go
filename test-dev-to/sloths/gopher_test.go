@@ -6,10 +6,10 @@ import (
 	"testing"
 )
 
-// Must create the test-files directory before running this test
+// Must create the test_files directory before running this test
 func TestAddGopher(t *testing.T) {
 	// set up file to add a gopher to: create a file if it doesn't exist
-	path := filepath.Join("test-files", "gopher-added.txt")
+	path := filepath.Join("test_files", "gopher-added.txt")
 	f, err := os.Create(path)
 	if err != nil {
 		t.Fatal(err)

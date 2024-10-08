@@ -287,3 +287,60 @@ Ref: Copilot
 6. Use the mock in the test
 
 Ref: Copilot
+
+# Terminology
+
+- `go.mod`: Defines the module's properties and dependencies (NOT for package). It's placed at the root of the module directory.
+- Package:
+  - A collection of source files in the same directory that are compiled together.
+  - `package main`: A special package that defines a standalone executable program. It must contain a main function, which is the entry point of the program.
+- Module: A collection of related Go packages that are versioned together.
+
+Example:
+
+```
+my-module/
+    go.mod
+    main.go
+    pkg1/
+        file1.go
+        file1_1.go
+    pkg2/
+        file2.go
+```
+
+Hiểu đơn giản thì:
+
+- 1 module sẽ được đặt trong 1 folder (chẳng hạn `my-module` như ở trên), bên trong này có thể chứa nhiều package khác nhau
+- File `go.mod` được đặt ở thư mục root của module (như hình trên), dùng để định nghĩa dependencies cho module
+- Mỗi package sẽ có 1 folder riêng, bên trong sẽ gồm các file `.go`, chúng đều khai báo chung 1 package ở đầu file
+- The `main.go` file contains the **entry point of the program**, nó trông như này:
+
+  ```go
+  package main
+
+  import (
+      "fmt"
+      "my-module/pkg1"
+      "my-module/pkg2"
+  )
+
+  func main() {
+      fmt.Println("Hello, World!")
+      pkg1.Function1()
+      pkg2.Function2()
+  }
+  ```
+
+- Các file bên trong 1 package sẽ trông như này:
+
+  ```go
+  // pkg1/file1.go
+  package pkg1
+
+  import "fmt"
+
+  func Function1() {
+      fmt.Println("Function1 from pkg1")
+  }
+  ```

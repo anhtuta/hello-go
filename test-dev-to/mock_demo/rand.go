@@ -1,4 +1,4 @@
-package sloths
+package mock_demo
 
 import "math/rand"
 
@@ -37,5 +37,5 @@ func DivByRand(numerator int, r RandNumberGenerator) int {
 	return numerator / denominator
 }
 
-// We can call this in production code like this: sloths.DivByRand(200, sloths.StandardRand{}).
+// We can call this in production code like this: mock_demo.DivByRand(200, mock_demo.StandardRand{}).
 // In tests, though, we will instead use a mock implementation of our randNumberGenerator interface

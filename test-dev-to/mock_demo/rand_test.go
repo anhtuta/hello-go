@@ -1,4 +1,4 @@
-package sloths
+package mock_demo
 
 import (
 	"testing"

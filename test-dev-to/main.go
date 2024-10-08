@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"test-dev-to/sloths"
+	"test-dev-to/mock_demo"
 )
 
 func main() {
-	res := sloths.DivByRand(200, sloths.StandardRand{})
+	res := mock_demo.DivByRand(200, mock_demo.StandardRand{})
 	fmt.Println("200 after divided by a random number:", res)
 }
