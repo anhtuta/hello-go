@@ -4,9 +4,9 @@ Ref: https://blog.jetbrains.com/go/2022/11/22/comprehensive-guide-to-testing-in-
 
 ## Setup
 
-All commands assume that you are in `test-goland` folder
+All commands assume that you are in `test-testify` folder
 
-Init this module: `go mod init test-goland`
+Init this module: `go mod init test-testify`
 
 Install testify: `go get github.com/stretchr/testify`
 
@@ -15,7 +15,7 @@ After this, we will get some error:
 ```
 /Users/tuta/dev/pkg/mod/github.com/stretchr/testify@v1.9.0/assert/assertions.go:20:2: missing go.sum entry for module providing package github.com/davecgh/go-spew/spew (imported by github.com/stretchr/testify/assert); to add:
         go get github.com/stretchr/testify/assert@v1.9.0
-FAIL    test-goland [setup failed]
+FAIL    test-testify [setup failed]
 ```
 
 Maybe this library needs some dependencies, let install them by following its suggestion:

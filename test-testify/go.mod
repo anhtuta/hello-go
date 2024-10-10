@@ -1,4 +1,4 @@
-module test-goland
+module test-testify
 
 go 1.22.1
 
