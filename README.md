@@ -299,6 +299,8 @@ Ref: Copilot
 
 Ref: Copilot
 
+Note: Mọi file test phải có tên kết thúc bằng `_test.go`, nếu không khi run cmd `go test`, nó sẽ không detect được để run
+
 # Terminology
 
 - `go.mod`: Defines the module's properties and dependencies (NOT for package). It's placed at the root of the module directory.
