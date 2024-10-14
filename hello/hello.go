@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"hello-go/greetings"
 
@@ -30,4 +32,39 @@ func main() {
 
 	// If no error was returned, print the returned map of messages to the console..
 	fmt.Println(messages)
+
+	fmt.Println("\n============ Context demo ============")
+	// Create a context with a timeout of 2 seconds
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+
+	// Simulate a long-running operation
+	select {
+	case <-time.After(1 * time.Second):
+		fmt.Println("1. Operation completed")
+	case <-ctx.Done():
+		fmt.Println("1. Operation timed out:", ctx.Err())
+	}
+	select {
+	case <-time.After(3 * time.Second):
+		fmt.Println("2. Operation completed")
+	case <-ctx.Done():
+		fmt.Println("2. Operation timed out:", ctx.Err())
+	}
+
+	// Create a context with a value
+	ctx1 := context.WithValue(context.Background(), "key", "value")
+
+	// Pass the context to a function
+	process(ctx1)
+	fmt.Println("Context demo completed")
+}
+
+func process(ctx context.Context) {
+	// Retrieve the value from the context
+	if val, ok := ctx.Value("key").(string); ok {
+		fmt.Println("Value from context:", val)
+	} else {
+		fmt.Println("Key not found in context")
+	}
 }
