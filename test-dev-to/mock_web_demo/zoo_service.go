@@ -15,7 +15,12 @@ var favSnackMatcher = regexp.MustCompile(
 //
 // Nếu dùng concrete parameter type *ZooHTTPClient thì khi test sẽ không thể mock được:
 // func getSlothsFavoriteSnack(c *ZooHTTPClient) (string, error) {
+// Do đó bước đầu tiên là 1. Wrapping our client in an interface (xem file zoo_client.go):
+// wrap method ListAnimalFacts của ZooHTTPClient vào 1 interface, sau đó dùng interface làm param của hàm này,
+// tức là param của nó phải là kiểu abstract, không phải kiểu concrete.
+// Các bước 2,3: xem file zoo_service_test.go
 //
+// Note:
 // Nếu dùng con trỏ của interface *ZooClient, thì khi gọi phải dereference con trỏ:
 //
 //	func getSlothsFavoriteSnack(c *ZooClient) {
