@@ -134,3 +134,40 @@ func TestGetSlothfulMessage(t *testing.T) {
 		)
 	}
 }
+
+// Similar to TestGetSlothfulMessage, but written in another way
+// Param thứ 2 của HandleFunc là 1 function có signature là func(http.ResponseWriter, *http.Request).
+// Do handleSlothfulMessage có signature giống vậy, nên ta có thể truyền nó vào HandleFunc.
+// Nhưng ta phải cast nó về kiểu http.HandlerFunc, vì HandleFunc yêu cầu kiểu http.HandlerFunc,
+// không phải kiểu func(http.ResponseWriter, *http.Request).
+// Có 2 cách cast là dùng explicit type declaration, hoặc type inference.
+// Note: Functions and variables exist in different namespaces, so you can have a function and
+// a variable with the same name.
+func TestGetSlothfulMessage1(t *testing.T) {
+	// Start a new server, on a randomized port, but use the same handler
+	router := http.NewServeMux()
+
+	// 1. Explicit Type Declaration
+	var handleSlothfulMessage http.HandlerFunc = handleSlothfulMessage
+	// 2. Type Inference
+	// var handleSlothfulMessage = http.HandlerFunc(handleSlothfulMessage)
+
+	// The rest is the same
+	router.HandleFunc("/sloth", handleSlothfulMessage)
+
+	svr := httptest.NewServer(router)
+	defer svr.Close()
+
+	// Set up our client and have it test an HTTP roundtrip to our /sloth endpoint
+	c := NewClient(http.DefaultClient, svr.URL)
+	m, err := c.GetSlothfulMessage()
+	if err != nil {
+		t.Fatalf("error in GetSlothfulMessage: %v", err)
+	}
+	if m.Message != "Stay slothful!" {
+		t.Errorf(
+			`message %s should contain string "Sloth"`,
+			m.Message,
+		)
+	}
+}

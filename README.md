@@ -357,3 +357,21 @@ Hiểu đơn giản thì:
       fmt.Println("Function1 from pkg1")
   }
   ```
+
+# Type Inference
+
+2 cách sau đều dùng để cast biến `mockHandler` sang kiểu `http.HandlerFunc`, khác nhau ở chỗ:
+
+- Explicit Type Declaration: `var mockHandler http.HandlerFunc = handler`
+
+  - Explicitly states the type of the variable.
+  - Can be **more readable** and clear, especially for those unfamiliar with type inference.
+
+- Type Inference: `var mockHandler = http.HandlerFunc(handler)`
+
+  - Uses type inference to determine the type of the variable.
+  - More concise but relies on understanding the type returned by `http.HandlerFunc(handler)`.
+
+Code: [httptest_demo](./test-dev-to/httptest_demo/server_test.go)
+
+Ref: Copilot
