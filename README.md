@@ -375,3 +375,59 @@ Hiểu đơn giản thì:
 Code: [httptest_demo](./test-dev-to/httptest_demo/server_test.go)
 
 Ref: Copilot
+
+# Value types vs Reference types
+
+Go có 2 thể loại kiểu dữ liệu: kiểu giá trị và kiểu tham chiếu
+
+Value Types
+
+- Integers (`int`, `int8`, `int16`, `int32`, `int64`, `uint`, `uint8`, `uint16`, `uint32`, `uint64`)
+- Floating-point numbers (`float32`, `float64`)
+- Booleans (`bool`)
+- Strings (`string`)
+- Arrays
+- Structs
+
+Reference Types
+
+- Slices
+- Maps
+- Channels
+- Pointers
+- Functions
+
+Function nên return kiểu nào
+
+- Với kiểu giá trị thì nên return con trỏ, bởi vì:
+
+  - Efficiency: avoids copying the entire object: không phải copy kết quả sang 1 object khác rồi mới return
+  - Modification: Có thể modify response
+  - Nil Check: vì nó là con trỏ nên có thể check `nil`
+
+- Với kiểu tham chiếu: **không cần return con trỏ**, tức là khi return 1 giá trị kiểu map, ta cũng đã ngầm định return 1 tham chiếu trỏ tới hashmap rồi (chứ KHÔNG phải return a copy of the entire map)
+- Example:
+
+  ```go
+  type MyInterface interface {
+    Func1(ctx context.Context, request *EmployeeRequest) (*EmployeeResponse, error)
+    Func2(ctx context.Context, request *EmployeeRequest) (map[EmployeeResponse]string, error)
+  }
+  ```
+
+## Compare to Java
+
+Value Types
+
+- Primitive types: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, `boolean`
+
+Reference Types
+
+- Arrays
+- Classes (including custom classes)
+- Interfaces
+- Enums
+- `String`
+- `Object`
+
+Ref: Copilot
