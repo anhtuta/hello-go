@@ -397,7 +397,105 @@ Reference Types
 - Pointers
 - Functions
 
-Function nên return kiểu nào
+## All reference types in detail with examples
+
+### 1. Slices
+
+- **Description**: Slices are dynamically-sized, flexible views into the elements of an array. They are reference types because they contain a pointer to the underlying array, along with a length and capacity.
+- **Example**:
+
+  ```go
+  func modifySlice(s []int) {
+      s[0] = 42
+  }
+
+  func main() {
+      slice := []int{1, 2, 3}
+      modifySlice(slice)
+      fmt.Println(slice) // Output: [42, 2, 3]
+  }
+  ```
+
+### 2. Maps
+
+- **Description**: Maps are collections of key-value pairs. They are reference types because they contain a pointer to the underlying hash table.
+- **Example**:
+
+  ```go
+  func modifyMap(m map[string]int) {
+      m["key"] = 42
+  }
+
+  func main() {
+      m := map[string]int{"key": 1}
+      modifyMap(m)
+      fmt.Println(m) // Output: map[key:42]
+  }
+  ```
+
+### 3. Channels
+
+- **Description**: Channels are used for communication between goroutines. They are reference types because they contain a pointer to the underlying channel data structure.
+- **Example**:
+
+  ```go
+  func sendMessage(ch chan string) {
+      ch <- "Hello, World!"
+  }
+
+  func main() {
+      ch := make(chan string)
+      go sendMessage(ch)
+      msg := <-ch
+      fmt.Println(msg) // Output: Hello, World!
+  }
+  ```
+
+### 4. Pointers
+
+- **Description**: Pointers hold the memory address of a value. They are explicitly reference types.
+- **Example**:
+
+  ```go
+  func modifyValue(p *int) {
+      *p = 42
+  }
+
+  func main() {
+      value := 1
+      modifyValue(&value)
+      fmt.Println(value) // Output: 42
+  }
+  ```
+
+### 5. Functions
+
+- **Description**: Functions are reference types because they contain a pointer to the function's code and environment.
+- **Example**:
+
+  ```go
+  func modifyFunction(f func() int) func() int {
+      return func() int {
+          return f() + 1
+      }
+  }
+
+  func main() {
+      f := func() int { return 1 }
+      f = modifyFunction(f)
+      fmt.Println(f()) // Output: 2
+  }
+  ```
+
+### Summary
+
+- **Slices**: Reference types that point to an underlying array.
+- **Maps**: Reference types that point to an underlying hash table.
+- **Channels**: Reference types that point to an underlying channel data structure.
+- **Pointers**: Explicit reference types that hold memory addresses.
+- **Functions**: Reference types that point to function code and environment.
+
+## Function nên return kiểu nào
 
 - Với kiểu giá trị thì nên return con trỏ, bởi vì:
 
