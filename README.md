@@ -529,3 +529,177 @@ Reference Types
 - `Object`
 
 Ref: Copilot
+
+# Object dùng như function nếu nó có kiểu function type
+
+```go
+// 1 kiểu function type
+// PayrollProviderFactoryFunc is a function to create a PayrollProvider service for a given provider
+type PayrollProviderFactoryFunc func(provider string) (PayrollService, error)
+
+// Ta có object sau thuộc kiểu function type, nó có thể là 1 field của 1 struct
+payrollProviderFactory       PayrollProviderFactoryFunc
+
+// Giờ có thể gọi biến payrollProviderFactory như gọi function
+payrollService, err := pr.payrollProviderFactory("Provider name")
+if err != nil {
+  return nil, errors.NewNotImplementedError("provider not supported").Error()
+}
+```
+
+TODO update this...
+
+# Transitioning from Java to Go: terms and concepts
+
+Here are some terms and concepts that a Java developer should be familiar with when working with Go:
+
+1. **Goroutines**:
+
+- **Description**: Lightweight threads managed by the Go runtime.
+- **Java Equivalent**: Similar to threads but more lightweight and managed by the Go runtime.
+- **Example**:
+  ```go
+  go func() {
+      fmt.Println("Hello from a goroutine")
+  }()
+  ```
+
+2. **Channels**:
+
+- **Description**: Used for communication between goroutines.
+- **Java Equivalent**: Similar to blocking queues or other concurrency utilities.
+- **Example**:
+  ```go
+  ch := make(chan int)
+  go func() {
+      ch <- 42
+  }()
+  value := <-ch
+  fmt.Println(value)
+  ```
+
+3. **Interfaces**:
+
+- **Description**: Define a set of method signatures that a type must implement.
+- **Java Equivalent**: Similar to interfaces in Java.
+- **Example**:
+  ```go
+  type Stringer interface {
+      String() string
+  }
+  ```
+
+4. **Structs**:
+
+- **Description**: Composite data types that group together variables.
+- **Java Equivalent**: Similar to classes but without inheritance.
+- **Example**:
+  ```go
+  type Person struct {
+      Name string
+      Age  int
+  }
+  ```
+
+5. **Slices**:
+
+- **Description**: Dynamically-sized arrays.
+- **Java Equivalent**: Similar to ArrayLists but more efficient.
+- **Example**:
+  ```go
+  var numbers []int
+  numbers = append(numbers, 1, 2, 3)
+  ```
+
+6. **Maps**:
+
+- **Description**: Key-value pairs.
+- **Java Equivalent**: Similar to HashMaps.
+- **Example**:
+  ```go
+  var m map[string]int
+  m = make(map[string]int)
+  m["one"] = 1
+  ```
+
+7. **Pointers**:
+
+- **Description**: Variables that hold memory addresses.
+- **Java Equivalent**: Java does not have explicit pointers, but references in Java are somewhat similar.
+- **Example**:
+  ```go
+  var p *int
+  i := 42
+  p = &i
+  ```
+
+8. **Packages**:
+
+- **Description**: Group related Go files together.
+- **Java Equivalent**: Similar to packages in Java.
+- **Example**:
+
+  ```go
+  package main
+
+  import "fmt"
+
+  func main() {
+      fmt.Println("Hello, World!")
+  }
+  ```
+
+9. **Error Handling**:
+
+- **Description**: Go uses explicit error handling rather than exceptions.
+- **Java Equivalent**: Similar to checked exceptions but handled explicitly.
+- **Example**:
+  ```go
+  func divide(a, b int) (int, error) {
+      if b == 0 {
+          return 0, fmt.Errorf("division by zero")
+      }
+      return a / b, nil
+  }
+  ```
+
+10. **Function Types**:
+
+- **Description**: Functions can be assigned to variables and passed around as arguments. Functions can be used as first-class citizens.
+- **Java Equivalent**: Similar to functional interfaces or lambda expressions.
+- **Example**:
+
+  ```go
+  type Adder func(int, int) int
+
+  func main() {
+      var add Adder = func(a, b int) int {
+          return a + b
+      }
+      fmt.Println(add(1, 2))
+  }
+  ```
+
+11. **Defer**:
+
+- **Description**: Schedules a function call to be run after the function completes.
+- **Java Equivalent**: Similar to finally blocks but more flexible.
+- **Example**:
+  ```go
+  func main() {
+      defer fmt.Println("This will be printed last")
+      fmt.Println("This will be printed first")
+  }
+  ```
+
+12. **Go Modules**:
+
+- **Description**: Dependency management system for Go.
+- **Java Equivalent**: Similar to Maven or Gradle.
+- **Example**:
+  ```sh
+  go mod init mymodule
+  go get github.com/some/dependency
+  ```
+
+Ref: Copilot
