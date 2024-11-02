@@ -106,3 +106,10 @@ func TestMyFunction(t *testing.T) {
 ```
 
 Note: trước khi viết được test, phải gen code đã, code này là mock implementation cho interface muốn mock. Command to gen code (run in `mock4` folder): `mockgen -source=fetcher.go -destination=mock_fetcher.go -package=mock4`
+
+Note2: gomock chỉ gen được mock code cho interface, nếu là kiểu concrete như struct thì nó sẽ không gen gì cả. Do đó trong code
+
+- Các module nên giao tiếp với nhau thông qua interface (nguyên lý SOLID),
+- Hiển nhiên các interface sẽ được implement, sau đó hàm main hoặc ở đâu đó sẽ dùng các implementation này để chạy chương trình
+- Lúc viết unit test, ta sẽ không dùng các implementation này nữa, mà tự tạo các mock implementation để test
+- Việc test sẽ dễ dàng hơn vì logic code chỉ là các interface nên có thể mock được
