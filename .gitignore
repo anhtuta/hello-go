@@ -1,2 +1,5 @@
 __MACOSX
 .DS_Store
+
+# Clone from https://github.com/grpc/grpc-go/tree/master/examples
+grpc-go/examples/
