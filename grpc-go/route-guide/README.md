@@ -4,7 +4,9 @@ A basic tutorial introduction to gRPC in Go.
 
 Ref: https://grpc.io/docs/languages/go/basics/
 
-Tutorial step by step
+Note: should read this tutorial first to know how to install `protoc`, a library to gen code: https://grpc.io/docs/languages/go/quickstart/
+
+Tutorial step by step:
 
 ## Init
 
