@@ -6,6 +6,44 @@ Ref: https://grpc.io/docs/languages/go/basics/
 
 Note: should read this tutorial first to know how to install `protoc`, a library to gen code: https://grpc.io/docs/languages/go/quickstart/
 
+Cụ thể: chạy 2 lệnh sau để cài `protoc`
+
+```bash
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+```
+
+2 lệnh trên sẽ cài (download) 2 binary file về máy, chúng sẽ được lưu ở thư mục `GOPATH/bin`, hiện tại thì máy t nó ở chỗ này:
+
+```bash
+# File ~/.zshrc
+export GOPATH=$HOME/dev
+export PATH=$PATH:$GOPATH/bin
+```
+
+Run lệnh check thử:
+
+```bash
+➜  route-guide git:(main) go env GOPATH
+/Users/tuta/dev
+➜  route-guide git:(main) where protoc-gen-go
+/Users/tuta/dev/bin/protoc-gen-go
+/Users/tuta/dev/bin/protoc-gen-go
+➜  route-guide git:(main) cd $(go env GOPATH)/bin
+➜  bin pwd
+/Users/tuta/dev/bin
+➜  bin ll
+total 188968
+-rwxr-xr-x  1 tuta  staff    16M Oct 14 00:02 dlv
+-rwxr-xr-x  1 tuta  staff    30M Sep 11 18:29 gopls
+-rwxr-xr-x  1 tuta  staff    12M Apr 12  2024 govulncheck
+-rwxr-xr-x  1 tuta  staff   9.1M Oct 10 19:12 mockgen
+-rwxr-xr-x  1 tuta  staff   6.6M Nov  2 17:58 protoc-gen-go
+-rwxr-xr-x  1 tuta  staff   6.3M Nov  2 17:59 protoc-gen-go-grpc
+-rwxr-xr-x  1 tuta  staff    13M Apr  4  2024 staticcheck
+➜  bin
+```
+
 Tutorial step by step:
 
 ## Init
