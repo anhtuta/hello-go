@@ -159,6 +159,7 @@ func arrayAndSlice() {
 	// you do not need to specify the size. Here are the key points:
 	// Array: Fixed Size: The size of the array is specified at the time of creation and cannot be changed.
 	arr := [5]int{1, 2, 3, 4, 5}
+	// arr = append(arr, 6) // Error: first argument to append must be slice; have [5]int
 	fmt.Println("Array:", arr)
 	// Slice: Dynamic Size: The size of the slice can grow and shrink dynamically.
 	slice := []int{1, 2, 3, 4, 5}

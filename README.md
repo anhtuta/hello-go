@@ -4,6 +4,8 @@ Ref: https://go.dev/doc/
 
 This tutorial uses version: go1.22.1 darwin/arm64
 
+- 2024-12-31: upgraded to: go1.23.4 darwin/arm64
+
 # `go.mod` vs `pom.xml` file
 
 The `go.mod` file in Go is somewhat similar to the `pom.xml` file in Java. Both are used for managing project dependencies
@@ -47,6 +49,32 @@ my-multi-module-project/
 ```
 
 Ref: Copilot
+
+## Cấu trúc của project này
+
+Project này sẽ gồm nhiều module
+
+- Mỗi module là 1 tutorial nhỏ về 1 topic nào đó trên internet
+- Mỗi module sẽ có 1 thư mục riêng (có thể nằm trong 1 thư mục khác để dễ group và dễ quản lý)
+- Mỗi module sẽ có 1 file `go.mod`, dòng đầu tiên của file đó sẽ define tên module, e.g. `module hello-go/greetings`. Tên module và tên thư mục KHÔNG phải trùng nhau
+- Mỗi module thường sẽ có 1 file `main.go` ở thư mục root của module nó (cùng level với `go.mod`), thường thì sẽ run file này
+
+```
+hello-go/
+    ├── module1/
+    │   ├── go.mod
+    │   ├── main.go
+    ├── greetings/
+    │   ├── go.mod
+    │   ├── main.go
+    ├── parent-folder
+    │   ├── module3/
+    │   │   ├── go.mod
+    │   │   ├── main.go
+    │   ├── module4/
+    │   │   ├── go.mod
+    │   │   ├── main.go
+```
 
 # Pointer
 
@@ -398,6 +426,8 @@ Reference Types
 - Functions
 
 ## All reference types in detail with examples
+
+Full code: [reference_types.go](./tour/moretypes/reference_types.go)
 
 ### 1. Slices
 
