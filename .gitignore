@@ -3,3 +3,12 @@ __MACOSX
 
 # Clone from https://github.com/grpc/grpc-go/tree/master/examples
 grpc-go/examples/
+
+# go-micro
+go-micro/project/db-data
+**/frontApp
+**/brokerApp
+**/authApp
+**/loggerServiceApp
+**/mailerApp
+**/listenerApp
