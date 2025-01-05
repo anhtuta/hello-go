@@ -52,3 +52,22 @@ psql: error: connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL: 
 Có thể nó đang conflict với thằng postgres chạy ở local (trước t cài postgres = brew mà éo nhớ :v)
 
 Solution: chuyển sang port `5433` cho đỡ bị conflict
+
+## Should not use `localhost` to connect to internal service
+
+- Container `authentication-service` sẽ kết nối tới postgresql qua host `postgres`, chính là tên của service này trong file `docker-compose`, chứ không dùng `localhost` nhé, vì chúng dùng chung network
+- Tương tự, service `broker` sẽ gọi sang `authentication-service` qua và cũng không dùng `localhost` (check file [handlers.go](./broker-service/cmd/api/handlers.go)):
+  ```go
+  request, err := http.NewRequest("POST", "http://authentication-service/authenticate", bytes.NewBuffer(jsonData))
+  ```
+
+## Fix warning `orphans`
+
+Nếu gặp warning này khi start docker container:
+
+```
+Fix warning: WARN[0003] Found orphan containers ([project-adminer-1 project-pgadmin-1]) for this project.
+If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+```
+
+Thì thêm `--remove-orphans` vào `docker-compose` là được

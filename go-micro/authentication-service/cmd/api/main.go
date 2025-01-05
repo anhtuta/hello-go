@@ -19,7 +19,7 @@ const webPort = "80"
 var counts int64
 
 type Config struct {
-	DB     *sql.DB
+	// DB     *sql.DB // don't need this!
 	Models data.Models
 }
 
@@ -34,7 +34,7 @@ func main() {
 
 	// set up config
 	app := Config{
-		DB:     conn,
+		// DB:     conn,
 		Models: data.New(conn),
 	}
 
@@ -64,6 +64,7 @@ func openDB(dsn string) (*sql.DB, error) {
 }
 
 func connectToDB() *sql.DB {
+	// DSN = data source name, such as: host=postgres port=5432 user=postgres.... It was defined in docker-compose
 	dsn := os.Getenv("DSN")
 
 	// Connect to postgres and retry if error

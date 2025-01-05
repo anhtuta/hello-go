@@ -1,6 +1,7 @@
 FRONT_END_BINARY=frontApp
 BROKER_BINARY=brokerApp
 AUTH_BINARY=authApp
+LOGGER_BINARY=loggerServiceApp
 
 ## up: starts all containers in the background without forcing build
 up:
@@ -9,11 +10,11 @@ up:
 	@echo "Docker images started!"
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build: build_broker build_auth
+up_build: build_broker build_auth build_logger
 	@echo "Stopping docker images (if running...)"
 	docker-compose down
 	@echo "Building (when required) and starting docker images..."
-	docker-compose up --build -d
+	docker-compose up --build -d --remove-orphans
 	@echo "Docker images built and started!"
 
 ## down: stop docker compose
@@ -22,10 +23,30 @@ down:
 	docker-compose down
 	@echo "Done!"
 
+########## Build and start services individually: stop service if running, then build and start it ##########
+up_build_broker: build_broker
+	@echo "Stopping broker-service (if running...)"
+	docker-compose down broker-service
+	@echo "Building (when required) and starting docker image for broker-service..."
+	docker-compose up --build -d --remove-orphans broker-service
+	@echo "Docker image of broker-service built and started!"
+up_build_auth: build_auth
+	@echo "Stopping authentication-service (if running...)"
+	docker-compose down authentication-service
+	@echo "Building (when required) and starting docker image for authentication-service..."
+	docker-compose up --build -d --remove-orphans authentication-service
+	@echo "Docker image of authentication-service built and started!"
+
 ## build_broker: builds the broker binary as a linux executable
 build_broker:
 	@echo "Building broker binary..."
 	cd ../broker-service && env GOOS=linux CGO_ENABLED=0 go build -o ${BROKER_BINARY} ./cmd/api
+	@echo "Done!"
+
+## build_logger: builds the logger binary as a linux executable
+build_logger:
+	@echo "Building logger binary..."
+	cd ../logger-service && env GOOS=linux CGO_ENABLED=0 go build -o ${LOGGER_BINARY} ./cmd/api
 	@echo "Done!"
 
 ## build_auth: builds the auth binary as a linux executable
@@ -34,7 +55,7 @@ build_auth:
 	cd ../authentication-service && env GOOS=linux CGO_ENABLED=0 go build -o ${AUTH_BINARY} ./cmd/api
 	@echo "Done!"
 
-## build_front: builds the frone end binary
+## build_front: builds the front end binary
 build_front:
 	@echo "Building front end binary..."
 	cd ../front-end && env CGO_ENABLED=0 go build -o ${FRONT_END_BINARY} ./cmd/web
