@@ -6,6 +6,17 @@ Rate: 4.5 (2502 ratings) 23,668 students
 
 https://cbtwapac.udemy.com/course/working-with-microservices-in-go/
 
+## How to run on local
+
+All commands are executed in `project` folder
+
+- Start BE: `make up_build`
+- Init data for postgres: check below
+- Start FE: `make start`
+- Go to FE page: http://localhost:8090/, click to each button to test it
+  - Check data in DB: use PgAdmin and MongoDB compass
+  - Check mail result: http://localhost:8025/
+
 ## Init data
 
 Run [users.sql](./users.sql) in for `users` database after starting the containers. This will create a new `users` table inside `users` database, and create a sample record for it
