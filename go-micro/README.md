@@ -51,6 +51,44 @@ users=# SELECT * FROM users;
 (1 row)
 ```
 
+## Code explain
+
+Broker-service
+
+- Giống như API gateway, sẽ nhận mọi request từ UI
+- Nó dùng 1 endpoint duy nhất để điều hướng request, đó là `/handler`
+- UI muốn gọi tới chẳng hạn service auth, sẽ gọi tới endpoint `/handler` và kèm theo `action=auth`
+
+Authentication flow:
+
+- Click `Test Auth` in UI
+- UI gọi tới Broker:
+  ```bash
+  curl 'http://localhost:8080/handle' \
+    --data-raw '{"action":"auth","auth":{"email":"admin@example.com","password":"verysecret"}}'
+  ```
+- Broker gọi sang auth-service để xác thực: `http://authentication-service/authenticate`
+- Auth-service xác thực và gọi sang log-service để ghi log
+
+Log flow:
+
+- Click `Test Log` in UI
+- UI gọi tới Broker:
+  ```bash
+  curl 'http://localhost:8080/handle' \
+    --data-raw '{"action":"log","log":{"name":"event","data":"Some kind of data"}}'
+  ```
+- Broker gọi sang log-service thông qua RPC:
+  - Server address: `logger-service:5001`
+  - Server method: `client.Call("RPCServer.LogInfo", rpcPayload, &result)`
+- Log-service nhận data và ghi vào mongoDB
+- Ưu điểm:
+  - Không cần Marshal/Unmarshal data (parse JSON)
+  - Client chỉ cần chỉ rõ tên method của RPC server + param là có thể gọi được
+- Requirement:
+  - Cả 2 phải define cùng kiểu data cho param --> duplicate code
+  - Cả 2 phải viết bằng Go (thấy tutorial bảo thế), và đều phải implement RPC
+
 ## Postgres error
 
 Dùng PgAdmin connect tới `localhost:5432` bị lỗi sau:

@@ -38,6 +38,12 @@ up_build_auth: build_auth
 	@echo "Building (when required) and starting docker image for authentication-service..."
 	docker-compose up --build -d --remove-orphans authentication-service
 	@echo "Docker image of authentication-service built and started!"
+up_build_logger: build_logger
+	@echo "Stopping logger-service (if running...)"
+	docker-compose down logger-service
+	@echo "Building (when required) and starting docker image for logger-service..."
+	docker-compose up --build -d --remove-orphans logger-service
+	@echo "Docker image of logger-service built and started!"
 
 ## build_broker: builds the broker binary as a linux executable
 build_broker:
