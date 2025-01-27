@@ -6,6 +6,20 @@ This tutorial uses version: go1.22.1 darwin/arm64
 
 - 2024-12-31: upgraded to: go1.23.4 darwin/arm64
 
+Install and config Go:
+
+- Install using brew: `brew install go`
+- Config go path: add it to `.zshrc` file:
+  ```bash
+  # go
+  export GOPATH=$HOME/dev
+  export PATH=$PATH:$GOPATH/bin
+  ```
+- Create the needed directories: `mkdir -p $GOPATH/{src,pkg,bin}`
+- Các binary file được cài bằng lệnh `go install` sẽ được lưu ở thư mục `$GOPATH/bin`
+- Các package được cài bằng lệnh `go get` sẽ được lưu ở thư mục `$GOPATH/pkg`
+- Đang dùng máy mac nên thư mục go path sẽ là: `/Users/tuta/dev`
+
 # `go.mod` vs `pom.xml` file
 
 The `go.mod` file in Go is somewhat similar to the `pom.xml` file in Java. Both are used for managing project dependencies
