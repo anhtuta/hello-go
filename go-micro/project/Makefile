@@ -26,6 +26,7 @@ down:
 	@echo "Done!"
 
 ########## Build and start services individually: stop service if running, then build and start it ##########
+########## This is useful when you modify source code of a single service and want to rebuild it ##########
 up_build_broker: build_broker
 	@echo "Stopping broker-service (if running...)"
 	docker-compose down broker-service

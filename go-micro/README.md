@@ -58,6 +58,7 @@ Broker-service
 - Giống như API gateway, sẽ nhận mọi request từ UI
 - Nó dùng 1 endpoint duy nhất để điều hướng request, đó là `/handler`
 - UI muốn gọi tới chẳng hạn service auth, sẽ gọi tới endpoint `/handler` và kèm theo `action=auth`
+- Update: có thêm endpoint khác là `/ping` và `/log-grpc` để handle ping-pong và gRPC request. Chi tiết xem file [routes.go](./broker-service/cmd/api/routes.go)
 
 Authentication flow:
 
@@ -88,6 +89,12 @@ Log flow:
 - Requirement:
   - Cả 2 phải define cùng kiểu data cho param --> duplicate code
   - Cả 2 phải viết bằng Go (thấy tutorial bảo thế), và đều phải implement RPC
+- Nếu muốn 2 phía có thể dùng 2 ngôn ngữ khác nhau --> dùng gRPC
+
+Gen code gRPC
+
+- Broker và logger có dùng cả gRPC để giao tiếp, do đó cả 2 sẽ phải define file proto giống hệt nhau
+- Từ file proto sẽ gen code Go, xem thêm ở file [README](./logger-service/README.md) của 2 service đó
 
 ## Postgres error
 

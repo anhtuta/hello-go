@@ -50,9 +50,15 @@ func main() {
 		Models: data.New(client),
 	}
 
+	// Note: source code from the course is missing this part (RPC and gRPC)
 	// register the RPC Server
 	err = rpc.Register(new(RPCServer))
+
+	// start RPC server
 	go app.rpcListen()
+
+	// start gRPC server
+	go app.gRPCListen()
 
 	// start web server
 	log.Println("Starting service on port", webPort)
