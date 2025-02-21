@@ -4,6 +4,8 @@ Module này giống như project Demo bên repo [spring](https://github.com/anht
 
 Init this module: `go mod init demo`
 
+Run any example (in the `demo` folder): `go run sub-folder-name/main.go`
+
 ## Code structure
 
 Mỗi 1 Go module thường sẽ chỉ có 1 file `main.go`, it is the entry point for a Go program

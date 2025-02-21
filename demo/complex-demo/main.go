@@ -1,7 +1,9 @@
 package main
 
 import (
-	"complex-demo/complex"
+	// demo is the module name, complex is the package name,
+	// complex-demo/complex is the location of the complex package in the demo module
+	"demo/complex-demo/complex"
 	"fmt"
 )
 
