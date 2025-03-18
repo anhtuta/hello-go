@@ -94,9 +94,15 @@ services:
       - "8025:8025"
 
   rabbitmq:
-    image: "rabbitmq:3.9-alpine"
+    ### Use this image for production
+    # image: "rabbitmq:3.9-alpine"
+    # ports:
+    #   - "5672:5672"
+    ### Use this image for development
+    image: "rabbitmq:3.9-management"
     ports:
       - "5672:5672"
+      - "15672:15672" # Management UI port
     deploy:
       mode: replicated
       replicas: 1

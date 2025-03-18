@@ -6,6 +6,10 @@ Rate: 4.5 (2502 ratings) 23,668 students
 
 https://cbtwapac.udemy.com/course/working-with-microservices-in-go/
 
+## Architecture
+
+![](./go-micro-architecture.jpg)
+
 ## How to run on local
 
 All commands are executed in `project` folder
@@ -95,6 +99,7 @@ Gen code gRPC
 
 - Broker và logger có dùng cả gRPC để giao tiếp, do đó cả 2 sẽ phải define file proto giống hệt nhau
 - Từ file proto sẽ gen code Go, xem thêm ở file [README](./logger-service/README.md) của 2 service đó
+- Note: có thể dùng chrome để test gPRC nhưng hiện tại không phải mọi browser đều hộ trợ
 
 ## Postgres error
 
