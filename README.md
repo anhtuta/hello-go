@@ -90,6 +90,14 @@ hello-go/
     │   │   ├── main.go
 ```
 
+## So sánh với Java, IntellIJ
+
+Có thể coi toàn bộ repo này là 1 project/workspace, như IntellIJ vậy. Ban đầu lúc tạo, đây là 1 empty project, tức là không phải project về Go hay Java hay bất kì ngôn ngữ nào, chỉ là 1 project với file `README.md` thôi
+
+- Mỗi 1 thư mục sẽ là 1 module độc lập có thể chạy được, giống như các module trong IDE IntellIJ vậy
+- Các module này tương tự như khái niệm project của Eclipse, hay project của Spring Initializr
+- Các module này tương tự như khái niệm module của IntellIJ
+
 # Pointer
 
 Khai báo giống C/C++: dùng dấu `*` để khai báo con trỏ, và dùng dấu `&` để lấy địa chỉ của biến
@@ -445,91 +453,96 @@ Full code: [reference_types.go](./tour/moretypes/reference_types.go)
 
 ### 1. Slices
 
-- **Description**: Slices are dynamically-sized, flexible views into the elements of an array. They are reference types because they contain a pointer to the underlying array, along with a length and capacity.
-- **Example**:
+Slices are dynamically-sized, flexible views into the elements of an array. They are reference types because they contain a pointer to the underlying array, along with a length and capacity.
 
-  ```go
-  func modifySlice(s []int) {
-      s[0] = 42
-  }
+Example
 
-  func main() {
-      slice := []int{1, 2, 3}
-      modifySlice(slice)
-      fmt.Println(slice) // Output: [42, 2, 3]
-  }
-  ```
+```go
+func modifySlice(s []int) {
+    s[0] = 42
+}
+
+func main() {
+    slice := []int{1, 2, 3}
+    modifySlice(slice)
+    fmt.Println(slice) // Output: [42, 2, 3]
+}
+```
 
 ### 2. Maps
 
-- **Description**: Maps are collections of key-value pairs. They are reference types because they contain a pointer to the underlying hash table.
-- **Example**:
+Maps are collections of key-value pairs. They are reference types because they contain a pointer to the underlying hash table.
 
-  ```go
-  func modifyMap(m map[string]int) {
-      m["key"] = 42
-  }
+Example
 
-  func main() {
-      m := map[string]int{"key": 1}
-      modifyMap(m)
-      fmt.Println(m) // Output: map[key:42]
-  }
-  ```
+```go
+func modifyMap(m map[string]int) {
+    m["key"] = 42
+}
+
+func main() {
+    m := map[string]int{"key": 1}
+    modifyMap(m)
+    fmt.Println(m) // Output: map[key:42]
+}
+```
 
 ### 3. Channels
 
-- **Description**: Channels are used for communication between goroutines. They are reference types because they contain a pointer to the underlying channel data structure.
-- **Example**:
+Channels are used for communication between goroutines. They are reference types because they contain a pointer to the underlying channel data structure.
 
-  ```go
-  func sendMessage(ch chan string) {
-      ch <- "Hello, World!"
-  }
+Example
 
-  func main() {
-      ch := make(chan string)
-      go sendMessage(ch)
-      msg := <-ch
-      fmt.Println(msg) // Output: Hello, World!
-  }
-  ```
+```go
+func sendMessage(ch chan string) {
+    ch <- "Hello, World!"
+}
+
+func main() {
+    ch := make(chan string)
+    go sendMessage(ch)
+    msg := <-ch
+    fmt.Println(msg) // Output: Hello, World!
+}
+```
 
 ### 4. Pointers
 
-- **Description**: Pointers hold the memory address of a value. They are explicitly reference types.
-- **Example**:
+Pointers hold the memory address of a value. They are explicitly reference types.
 
-  ```go
-  func modifyValue(p *int) {
-      *p = 42
-  }
+Example
 
-  func main() {
-      value := 1
-      modifyValue(&value)
-      fmt.Println(value) // Output: 42
-  }
-  ```
+```go
+func modifyValue(p *int) {
+    *p = 42
+}
+
+func main() {
+    value := 1
+    modifyValue(&value)
+    fmt.Println(value) // Output: 42
+}
+```
 
 ### 5. Functions
 
-- **Description**: Functions are reference types because they contain a pointer to the function's code and environment.
-- **Example**:
+Functions are reference types because they contain a pointer to the function's code and environment.
 
-  ```go
-  func modifyFunction(f func() int) func() int {
-      return func() int {
-          return f() + 1
-      }
-  }
+Example
 
-  func main() {
-      f := func() int { return 1 }
-      f = modifyFunction(f)
-      fmt.Println(f()) // Output: 2
-  }
-  ```
+```go
+func modifyFunction(f func() int) func() int {
+    return func() int {
+        return f() + 1
+    }
+}
+
+func main() {
+    f := func() int { return 1 }
+    f = modifyFunction(f)
+    fmt.Println(f()) // Output: 2
+}
+```
 
 ### Summary
 
