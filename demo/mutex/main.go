@@ -15,6 +15,7 @@ func incrCount() {
 	mutex.Unlock()
 }
 
+// Ref: https://batnamv.medium.com/go-concurrency-d%C3%A0nh-cho-java-developers-c7709f1f8752
 func main() {
 	for i := 0; i < 1000; i++ {
 		go incrCount()
