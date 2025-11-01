@@ -13,4 +13,6 @@ Mỗi 1 Go module thường sẽ chỉ có 1 file `main.go`, it is the entry poi
 Nhưng ta sẽ tạo nhiều thư mục trong module này, mỗi thư mục sẽ chứa 1 file `main.go`, do đó:
 
 - Mỗi 1 thư mục là 1 ví dụ nhỏ, chúng đều là `package main` vì chứa file `main.go`
-- Bên Java, mỗi 1 class đều có thể có hàm `main` và run file đó được, nhưng với Go, ta phải tạo nhiều thư mục nếu muốn có nhiều hàm `main` để chạy (mỗi 1 thư mục chỉ có 1 hàm `main`)
+- Bên Java, mỗi 1 class đều có thể có hàm `main` và run file đó được, nhưng với Go, ta phải tạo nhiều thư mục nếu muốn có nhiều hàm `main` để chạy, vì
+  - Mỗi 1 thư mục chỉ được phép khai báo 1 package, e.g. `package main` (ở đầu mỗi file.go)
+  - Mỗi 1 thư mục chỉ được phép có 1 hàm `main()`
