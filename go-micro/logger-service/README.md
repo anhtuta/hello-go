@@ -19,3 +19,10 @@ protoc --go_out=. --go_opt=paths=source_relative \
     --go-grpc_out=. --go-grpc_opt=paths=source_relative \
     logs/logs.proto
 ```
+
+## Push to docker
+
+```bash
+docker build -f logger-service.dockerfile -t tuzaku/logger-service:1.0.0 .
+docker push tuzaku/logger-service:1.0.0
+```

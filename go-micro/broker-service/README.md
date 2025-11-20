@@ -1,8 +1,8 @@
 # Broker service
 
-Similar to [logger-service](../logger-service/README.md)
-
 ## Commands used (don't need to run anymore)
+
+Similar to [logger-service](../logger-service/README.md)
 
 Install dependencies:
 
@@ -19,4 +19,11 @@ Generate Go files from proto files: run in `/broker-service` folder
 protoc --go_out=. --go_opt=paths=source_relative \
     --go-grpc_out=. --go-grpc_opt=paths=source_relative \
     logs/logs.proto
+```
+
+## Push to docker
+
+```bash
+docker build -f broker-service.dockerfile -t tuzaku/broker-service:1.0.0 .
+docker push tuzaku/broker-service:1.0.0
 ```
