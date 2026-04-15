@@ -12,3 +12,8 @@ go-micro/project/db-data
 **/loggerServiceApp
 **/mailerApp
 **/listenerApp
+
+# go
+**/vendor
+**/bin
+**/pkg
