@@ -1,5 +1,6 @@
 package closure
 
+// https://gobyexample.com/closures
 func IntSeq() func() int {
 	i := 0
 	return func() int {

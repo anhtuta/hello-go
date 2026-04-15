@@ -2,6 +2,7 @@ package array
 
 import "fmt"
 
+// https://gobyexample.com/arrays
 // Only exported (public) functions, which start with an uppercase letter,
 // can be accessed from other packages.
 // In typical Go code, slices are much more common; arrays are useful in some special scenarios

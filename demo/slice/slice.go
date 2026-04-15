@@ -5,6 +5,7 @@ import (
 	"slices"
 )
 
+// https://gobyexample.com/slices
 // In Go, every slice is backed by an underlying array.
 // The slice is a descriptor containing a pointer to the array, its length, and its capacity.
 // The slice itself does not store the data—only the underlying array does.
