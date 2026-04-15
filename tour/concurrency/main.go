@@ -125,5 +125,28 @@ func main() {
 		fmt.Println(i)
 	}
 
-	// continue at https://go.dev/tour/concurrency/5
+	fmt.Println("\n========== Select ==========")
+	c2 := make(chan int)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c2)
+		}
+		quit <- 0
+	}()
+	fibonacci1(c2, quit)
+
+	fmt.Println("\n========== Default Selection ==========")
+	demoDefault()
+
+	fmt.Println("\n========== Mutex ==========")
+	// Because sync.Mutex has a useful zero value. Go initializes any omitted fields to their zero value.
+	// For sync.Mutex, that zero value is an unlocked mutex, ready to use immediately.
+	// -> No need to initialize the mutex field in SafeCounter struct, just use it directly.
+	c3 := SafeCounter{strMap: make(map[string]int)}
+	for i := 0; i < 100; i++ {
+		go c3.Inc("somekey")
+	}
+	time.Sleep(time.Second)
+	fmt.Println(c3.Value("somekey"))
 }

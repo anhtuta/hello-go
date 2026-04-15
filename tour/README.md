@@ -20,3 +20,4 @@ List of tutorials
 - [More types: structs, slices, and maps](./moretypes/main.go): Learn how to define types based on existing ones: this lesson covers structs, arrays, slices, and maps
 - [Methods and interfaces](./methods/main.go): This lesson covers methods and interfaces, the constructs that define objects and their behavior
 - [Generics](./generics/main.go): Go supports generic programming using type parameters. This lesson shows some examples for employing generics in your code
+- [Concurrency](./concurrency/main.go): Go provides concurrency constructions as part of the core language. This lesson presents them and gives some examples on how they can be used

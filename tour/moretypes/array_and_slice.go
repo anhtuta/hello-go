@@ -52,13 +52,13 @@ func arrayAndSlice() {
 	// A slice literal is like an array literal without the length.
 	// Tạo mới 1 slice mà không cần phải chỉ rõ length, nhưng phải list các giá trị.
 	q := []int{2, 3, 5, 7, 11, 13}
-	fmt.Println(q)
+	fmt.Println("q:", q, "len(q) = ", len(q), "cap(q) = ", cap(q))
 
 	q = append(q, 17, 19)
-	fmt.Println("q after append:", q)
+	fmt.Println("q after append:", q, "len(q) = ", len(q), "cap(q) = ", cap(q))
 
 	r := []bool{true, false, true, true, false, true}
-	fmt.Println(r)
+	fmt.Println("r:", r, "len(r) = ", len(r), "cap(r) = ", cap(r))
 
 	// Tương đương với: var s1 []struct{i int; b bool}; s1 = ...
 	s1 := []struct {
