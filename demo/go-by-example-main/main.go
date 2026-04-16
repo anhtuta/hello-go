@@ -4,8 +4,11 @@ import (
 	"demo/array"
 	"demo/closure"
 	"demo/constants"
+	"demo/defer1"
 	"demo/goroutines"
+	"demo/panic1"
 	rangeovertypes "demo/range-over-types"
+	"demo/recover1"
 	"demo/slice"
 	stringsandrunes "demo/strings-and-runes"
 	"fmt"
@@ -41,4 +44,8 @@ func main() {
 	goroutines.TimeoutDemo()
 	goroutines.ChannelNonBlockingOpsDemo()
 	goroutines.ChannelCloseDemo()
+
+	panic1.PanicDemo()
+	defer1.DeferDemo()
+	recover1.RecoverDemo()
 }
