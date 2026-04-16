@@ -35,5 +35,10 @@ func main() {
 
 	goroutines.GoroutineDemo()
 	goroutines.ChannelDemo()
+	goroutines.ChannelSyncDemo()
+	goroutines.ChannelDirectionDemo()
 	goroutines.SelectDemo()
+	goroutines.TimeoutDemo()
+	goroutines.ChannelNonBlockingOpsDemo()
+	goroutines.ChannelCloseDemo()
 }
