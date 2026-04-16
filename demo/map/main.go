@@ -86,4 +86,7 @@ func main() {
 	// Output:
 	// foo map[foo1:1 foo2:2]
 	// bar map[bar1:3 bar2:4]
+
+	fmt.Println("\n========== Map with custom struct key ==========")
+	mapCustomKey()
 }

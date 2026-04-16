@@ -302,7 +302,6 @@ Differences
   - Goroutines: Managed by the Go runtime, which **handles scheduling and execution**. They are **extremely lightweight**, with a **small initial stack size** that **grows and shrinks as needed**.
   - Java Threads: Managed by the Java Virtual Machine (JVM) and the underlying operating system. They have a **fixed stack size** and are generally **more resource-intensive** than goroutines.
 - Syntax:
-
   - Goroutines: Created using the `go` keyword
     ```go
     go say("world")
@@ -318,7 +317,6 @@ Differences
     ```
 
 - Communication:
-
   - Goroutines: Communicate using **channels**, which provide a way to **send and receive values between goroutines**.
     ```go
     ch := make(chan int)
@@ -413,12 +411,10 @@ Hiểu đơn giản thì:
 2 cách sau đều dùng để cast biến `mockHandler` sang kiểu `http.HandlerFunc`, khác nhau ở chỗ:
 
 - Explicit Type Declaration: `var mockHandler http.HandlerFunc = handler`
-
   - Explicitly states the type of the variable.
   - Can be **more readable** and clear, especially for those unfamiliar with type inference.
 
 - Type Inference: `var mockHandler = http.HandlerFunc(handler)`
-
   - Uses type inference to determine the type of the variable.
   - More concise but relies on understanding the type returned by `http.HandlerFunc(handler)`.
 
@@ -427,6 +423,8 @@ Code: [httptest_demo](./test-dev-to/httptest_demo/server_test.go)
 Ref: Copilot
 
 # Value types vs Reference types
+
+In Go, the distinction between "value" and "reference" types is primarily about **how the data is stored and copied** when passed to functions or assigned to variables. Crucially, Go is always "pass-by-value", meaning it **always makes a copy** of whatever value you provide
 
 Go có 2 thể loại kiểu dữ liệu: kiểu giá trị và kiểu tham chiếu
 
@@ -446,6 +444,20 @@ Reference Types
 - Channels
 - Pointers
 - Functions
+
+Comparison
+
+- Value Types:
+  - When you assign or pass a value type, the **entire data structure is copied** into a new memory location
+  - Passing to function: **Entire value is copied**
+  - Changes to the copy **do not affect the original**
+  - Zero Value: Type-specific zero (e.g., 0, "")
+- Reference Types:
+  - These types are technically values that contain internal pointers to a shared underlying data structure
+  - When you copy these "headers," the copy still points to the same original data
+  - Passing to function: **Header with pointer is copied**
+  - Changes to the copy **affect the original data** because both copies point to the same underlying data structure
+  - Zero Value: `nil`
 
 ## All reference types in detail with examples
 
@@ -555,7 +567,6 @@ func main() {
 ## Function nên return kiểu nào
 
 - Với kiểu giá trị thì nên return con trỏ, bởi vì:
-
   - Efficiency: avoids copying the entire object: không phải copy kết quả sang 1 object khác rồi mới return
   - Modification: Có thể modify response
   - Nil Check: vì nó là con trỏ nên có thể check `nil`
