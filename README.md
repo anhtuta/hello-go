@@ -771,3 +771,74 @@ Here are some terms and concepts that a Java developer should be familiar with w
   ```
 
 Ref: Copilot
+
+# What is `context` in Go?
+
+In Go, **`context.Context`** is a small standard-library type that answers one question for a chain of work: **should this still be running?**
+
+It is usually the **first parameter** on functions that block or talk to the outside world (HTTP, SQL, Redis, RPC). Callers pass it in; libraries check it and stop when it says to.
+
+## What it carries
+
+1. **Cancellation** — Something upstream can say “stop.” Everyone holding that context (or a child of it) should wind down.
+2. **Deadlines / timeouts** — “Stop after 5 seconds” or “Stop at this time.”
+3. **Optional values** — Request IDs and similar (use sparingly; cancellation is the main point).
+
+You do not put big application state in a context. It is for **control and scope**, not a generic bag of data.
+
+## How you use it in code
+
+- **`context.Background()`** — Empty root context. No deadline, not cancelled unless a **child** is cancelled. Fine for short startup steps when nothing is listening for Ctrl+C yet.
+- **`context.WithCancel(parent)`** — Child cancels when you call `cancel()`.
+- **`context.WithTimeout(parent, d)`** — Child cancels after `d` or when `cancel()` runs.
+- **`signal.NotifyContext(...)`** — Child cancels when the process gets SIGINT/SIGTERM (Ctrl+C).
+
+When a context is cancelled, **`ctx.Done()`** closes. Code often waits on that channel or checks **`ctx.Err()`** (`context.Canceled` or `context.DeadlineExceeded`).
+
+## Mental model
+
+Example:
+
+```go
+func main() {
+	ctx := context.Background()
+
+  // connect to DB
+	pool, err := postgres.Open(ctx, cfg.DatabaseURL)
+	if err != nil {
+		log.Error("postgres", "err", err)
+		os.Exit(1)
+	}
+	defer pool.Close()
+
+  // connect to Redis
+	rdb, err := redis.Open(ctx, cfg.RedisAddr)
+	if err != nil {
+		log.Error("redis", "err", err)
+		os.Exit(1)
+	}
+	defer rdb.Close()
+}
+```
+
+Think of it like a **stop signal wired through the call tree**:
+
+```text
+main
+  └─ shutdownCtx  (cancel on Ctrl+C)
+       └─ HTTP handler's ctx  (cancel when client disconnects)
+            └─ postgres.Query(ctx, ...)
+```
+
+If the parent is cancelled, children should stop too. That is why `postgres.Open(ctx, …)` and `redis.Open(ctx, …)` take a context: if you ever call them under a timeout or cancel, they can abort instead of hanging forever.
+
+## Tie-in to the example code above
+
+- **Startup** — `startupCtx := context.Background()` is “no stop signal yet; just connect and migrate.”
+- **While serving** — `shutdownCtx, stop := signal.NotifyContext(...)` is “when the user hits Ctrl+C, `shutdownCtx` is done; use that in `select` to run graceful shutdown.”
+
+Same idea as Spring’s request scope or “abort this task,” but explicit, passed by hand, and built into the language ecosystem.
+
+**Rule of thumb:** If an operation can **block or should respect timeouts/cancellation**, pass `context.Context` as the first argument. If it finishes immediately and never blocks, you often skip it.
+
+Ref: Composer 2.5
